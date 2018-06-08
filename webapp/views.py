@@ -1,10 +1,11 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, render_template, request
 
 from webapp import app
 
 @app.route('/')
 def hello_world():
-    return '<!DOCTYPE HTML><html><head><title>Emerdata, or something</title></head><body><h1>Hello!</h1><p>Hello, World!</p></body></html>'
+    name = request.args.get('name', None)
+    return render_template('hello.html', name=name)
 
 @app.route('/favicon.ico')
 def favicon_route():
